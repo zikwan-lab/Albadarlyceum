@@ -1,8 +1,8 @@
 # 🚀 Vercel Deployment Guide - Al-Badar Lyceum
 
-## ✅ **Issue Fixed: Environment Variables**
+## ✅ **Issue Fixed: Vercel Configuration**
 
-The `vercel.json` file has been updated to remove secret references. Environment variables should now be added directly in the Vercel dashboard.
+The invalid `vercel.json` file has been removed. Vercel will auto-detect the Next.js framework and use optimal default settings. Environment variables should be added directly in the Vercel dashboard.
 
 ## 🔧 **Step-by-Step Vercel Deployment**
 
@@ -18,11 +18,11 @@ The `vercel.json` file has been updated to remove secret references. Environment
    - Choose `zikwan-lab/Albadarlyceum`
 
 3. **Configure Project Settings**:
-   - **Framework Preset**: Next.js (should auto-detect)
+   - **Framework Preset**: Next.js (auto-detected)
    - **Root Directory**: `./school-management-system`
-   - **Build Command**: `npm run build` (default)
-   - **Output Directory**: `.next` (default)
-   - **Install Command**: `npm install` (default)
+   - **Build Command**: `npm run build` (auto-configured)
+   - **Output Directory**: `.next` (auto-configured)
+   - **Install Command**: `npm install` (auto-configured)
 
 ### **Step 2: Add Environment Variables**
 
