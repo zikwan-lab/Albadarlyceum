@@ -8,8 +8,8 @@ import DashboardLayout from '@/components/layout/DashboardLayout'
 import { supabase } from '@/lib/supabase'
 import {
   ChartBarIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   UserGroupIcon,
   AcademicCapIcon,
   ClipboardDocumentCheckIcon,
@@ -213,7 +213,7 @@ export default function AnalyticsPage() {
                 <p className="text-sm font-medium text-gray-600">Total Students</p>
                 <p className="text-2xl font-semibold text-gray-900">{analytics.totalStudents.toLocaleString()}</p>
                 <div className="flex items-center mt-2">
-                  <TrendingUpIcon className="h-4 w-4 text-green-500 mr-1" />
+                  <ArrowTrendingUpIcon className="h-4 w-4 text-green-500 mr-1" />
                   <span className="text-sm text-green-600">+5.2% from last month</span>
                 </div>
               </div>
@@ -227,7 +227,7 @@ export default function AnalyticsPage() {
                 <p className="text-sm font-medium text-gray-600">Total Teachers</p>
                 <p className="text-2xl font-semibold text-gray-900">{analytics.totalTeachers}</p>
                 <div className="flex items-center mt-2">
-                  <TrendingUpIcon className="h-4 w-4 text-green-500 mr-1" />
+                  <ArrowTrendingUpIcon className="h-4 w-4 text-green-500 mr-1" />
                   <span className="text-sm text-green-600">+2 new this month</span>
                 </div>
               </div>
@@ -241,7 +241,7 @@ export default function AnalyticsPage() {
                 <p className="text-sm font-medium text-gray-600">Attendance Rate</p>
                 <p className="text-2xl font-semibold text-gray-900">{analytics.attendanceRate}%</p>
                 <div className="flex items-center mt-2">
-                  <TrendingDownIcon className="h-4 w-4 text-red-500 mr-1" />
+                  <ArrowTrendingDownIcon className="h-4 w-4 text-red-500 mr-1" />
                   <span className="text-sm text-red-600">-1.2% from last week</span>
                 </div>
               </div>
@@ -337,7 +337,7 @@ export default function AnalyticsPage() {
               </div>
               
               <div className="flex items-start space-x-3 p-3 bg-blue-50 rounded-lg">
-                <TrendingUpIcon className="h-5 w-5 text-blue-600 mt-0.5" />
+                <ArrowTrendingUpIcon className="h-5 w-5 text-blue-600 mt-0.5" />
                 <div>
                   <p className="text-sm font-medium text-blue-800">Improvement Noted</p>
                   <p className="text-sm text-blue-700">Mathematics attendance increased by 3% this week</p>
