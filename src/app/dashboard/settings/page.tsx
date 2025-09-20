@@ -61,11 +61,35 @@ export default function SettingsPage() {
 
   const fetchSettings = async () => {
     try {
-      // In a real app, fetch settings from database
-      // For now, using default values
-      setLoading(false)
+      // Fetch settings from database
+      const { data, error } = await supabase
+        .from('system_settings')
+        .select('*')
+        .single()
+
+      if (error && error.code !== 'PGRST116') { // PGRST116 = no rows found
+        console.error('Error fetching settings:', error)
+        return
+      }
+
+      if (data) {
+        setSettings({
+          school_name: data.school_name || '',
+          school_email: data.school_email || '',
+          school_phone: data.school_phone || '',
+          school_address: data.school_address || '',
+          academic_year: data.academic_year || '2024-2025',
+          attendance_threshold: data.attendance_threshold || 75,
+          notification_enabled: data.notification_enabled ?? true,
+          email_notifications: data.email_notifications ?? true,
+          sms_notifications: data.sms_notifications ?? false,
+          auto_backup: data.auto_backup ?? true,
+          maintenance_mode: data.maintenance_mode ?? false,
+        })
+      }
     } catch (error) {
       console.error('Error fetching settings:', error)
+    } finally {
       setLoading(false)
     }
   }
@@ -74,13 +98,31 @@ export default function SettingsPage() {
     try {
       setSaving(true)
       
-      // In a real app, save to database
-      // await supabase.from('system_settings').upsert(settings)
+      // Save to database
+      const { error } = await supabase
+        .from('system_settings')
+        .upsert({
+          school_name: settings.school_name,
+          school_email: settings.school_email,
+          school_phone: settings.school_phone,
+          school_address: settings.school_address,
+          academic_year: settings.academic_year,
+          attendance_threshold: settings.attendance_threshold,
+          notification_enabled: settings.notification_enabled,
+          email_notifications: settings.email_notifications,
+          sms_notifications: settings.sms_notifications,
+          auto_backup: settings.auto_backup,
+          maintenance_mode: settings.maintenance_mode,
+          updated_at: new Date().toISOString()
+        })
+
+      if (error) {
+        console.error('Error saving settings:', error)
+        setMessage({ type: 'error', text: 'Failed to save settings. Please try again.' })
+      } else {
+        setMessage({ type: 'success', text: 'Settings saved successfully!' })
+      }
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      setMessage({ type: 'success', text: 'Settings saved successfully!' })
       setTimeout(() => setMessage(null), 3000)
       
     } catch (error) {
